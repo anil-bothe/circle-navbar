@@ -42,7 +42,7 @@
             align-items: center;
         }
 
-        /*
+        
         .middle-circle::after {
             content: "";
             position: absolute;
@@ -50,12 +50,9 @@
             height: 140px;
             background-color: rgb(245, 176, 26);
             background-image: radial-gradient(at top, #fff, #ee6719);
-            rotate: -45deg;
-            border-start-start-radius: 50%;
-            border-top-right-radius: 50%;
-            border-bottom-left-radius: 50%;
+            clip-path: circle(50% at 50% 50%);
         }
-        */
+        
         .middle-circle .circle-nav-link-text {
             z-index: 9;
             font-size: 20px;
