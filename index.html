@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('bg.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .circle {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 50%;
+            rotate: 45deg;
+        }
+
+
+        .middle-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            translate: -50% -50%;
+            z-index: 9;
+            background-color: #ffffff;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            rotate: -45deg;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .middle-circle::after {
+            content: "";
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            background-color: rgb(245, 176, 26);
+            background-image: radial-gradient(at top, #fff, #ee6719);
+            rotate: -45deg;
+            border-start-start-radius: 50%;
+            border-top-right-radius: 50%;
+            border-bottom-left-radius: 50%;
+        }
+        .middle-circle .circle-nav-link-text {
+            z-index: 9;
+            font-size: 20px;
+        }
+
+        .rect {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #8d6d49;
+        }
+
+        .circle-nav-item {
+            rotate: -45deg;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .circle-active {
+            background-color: #ac4602;
+        }
+
+        .top-left {
+            left: -2px;
+            top: -2px;
+        }
+
+        .top-right {
+            right: -2px;
+            top: -2px;
+        }
+        .bottom-left {
+            left: -2px;
+            bottom: -2px;
+        }
+
+        .bottom-right {
+            right: -2px;
+            bottom: -2px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="circle">
+        <div class="middle-circle">
+            <span class="circle-nav-link-text">VoFoLo</span>
+        </div>
+        <div class="rect top-left"><a href="" class="circle-nav-item">Manufacture</a></div>
+        <div class="rect top-right"><a href="" class="circle-nav-item">Handicraft</a></div>
+        <div class="rect bottom-left"><a href="" class="circle-nav-item">Food stuff</a></div>
+        <div class="rect bottom-right"><a href="" class="circle-nav-item">Agriculture</a></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="propeller.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.circle').propeller({
+                inertia: 0.98, speed: 0,
+                onRotate: function (e) {
+                    let angle = this.angle;
+                    // 315 - 45 -> top-right
+                    // 45 - 135 -> top-left
+                    // 135 - 225 -> bottom-left
+                    // 225 - 315 -> bottom-right
+                    if (angle >= 315 || (angle >= 0 && angle <= 45)) {
+                        $(".circle-nav-link-text").text("Handicraft");
+                        $(".top-right").addClass("circle-active")
+                        
+                        $(".top-left").removeClass("circle-active")
+                        $(".bottom-left").removeClass("circle-active")
+                        $(".bottom-right").removeClass("circle-active")
+                    }
+                    else if (angle >= 45 && angle <= 135) {
+                        $(".circle-nav-link-text").text("Manufacture");
+                        $(".top-left").addClass("circle-active")
+                        
+                        $(".top-right").removeClass("circle-active")
+                        $(".bottom-left").removeClass("circle-active")
+                        $(".bottom-right").removeClass("circle-active")
+                    }
+                    else if (angle >= 135 && angle <= 225) {
+                        $(".circle-nav-link-text").text("Food stuff");
+                        $(".bottom-left").addClass("circle-active")
+                        
+                        $(".top-right").removeClass("circle-active")
+                        $(".top-left").removeClass("circle-active")
+                        $(".bottom-right").removeClass("circle-active")
+                    }
+                    else if (angle >= 225 && angle <= 315) {
+                        $(".circle-nav-link-text").text("Agriculture");
+                        $(".bottom-right").addClass("circle-active")
+
+                        $(".top-right").removeClass("circle-active")
+                        $(".top-left").removeClass("circle-active")
+                        $(".bottom-left").removeClass("circle-active")
+                    }
+
+                    // default middel angle is 45deg
+                    $(".middle-circle").css("rotate", `-${45 + angle}deg`);
+                    $(".circle-nav-item").css("rotate", `-${45 + angle}deg`);
+                },
+                onStop: function () {
+
+                }
+            });
+        })
+    </script>
+</body>
+
+</html>
