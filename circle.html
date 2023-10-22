@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0 100px;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .circle {
+            outline: 1px solid green;
+            width: 400px;
+            height: 400px;
+            overflow: hidden;
+            position: relative;
+            border-radius: 50%;
+        }
+        
+        .box {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            transform-origin: bottom right;
+            transform: rotate(calc(calc(360deg / 5) * var(--i))) skewX(18deg);
+            background-color: var(--clr);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="circle">
+        <!-- <div class="middle-circle"><span class="circle-nav-link-text">VoFoLo</span></div> -->
+        <div style="--i:1;--clr:red;" class="box box1"></div>
+        <div style="--i:2;--clr:green;" class="box box2"></div>
+        <div style="--i:3;--clr:blue;" class="box box3"></div>
+        <div style="--i:4;--clr:yellow;" class="box box4"></div>
+        <div style="--i:5;--clr:orange;" class="box box5"></div>
+    </div>
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="propeller.min.js"></script>
+    <!-- <script>
+        $(document).ready(function () {
+            $('.circle').propeller({
+                inertia: 0.98, speed: 0,
+                onRotate: function (e) {
+                    let angle = this.angle;
+                    // 315 - 45 -> top-right // 45 - 135 -> top-left // 135 - 225 -> bottom-left  // 225 - 315 -> bottom-right
+                    if (angle >= 315 || (angle >= 0 && angle <= 45)) {
+                        $(".circle .circle-nav-link-text").text("Handicraft");
+                        $(".top-right").addClass("circle-active")
+                        $(".top-left, .bottom-left, .bottom-right").removeClass("circle-active")
+                    }
+                    else if (angle >= 45 && angle <= 135) {
+                        $(".circle .circle-nav-link-text").text("Manufacture");
+                        $(".top-left").addClass("circle-active")
+                        $(".top-right, .bottom-left, .bottom-right").removeClass("circle-active")
+                    }
+                    else if (angle >= 135 && angle <= 225) {
+                        $(".circle .circle-nav-link-text").text("Food stuff");
+                        $(".bottom-left").addClass("circle-active")
+                        $(".top-right, .top-left, .bottom-right").removeClass("circle-active")
+                    }
+                    else if (angle >= 225 && angle <= 315) {
+                        $(".circle .circle-nav-link-text").text("Agriculture");
+                        $(".bottom-right").addClass("circle-active")
+                        $(".top-right, .top-left, .bottom-left").removeClass("circle-active")
+                    }
+
+                    // default middel angle is 45deg
+                    $(".middle-circle").css("rotate", `-${45 + angle}deg`);
+                    $(".circle .circle-nav-item").css("rotate", `-${45 + angle}deg`);
+                },
+                onStop: function () {
+
+                }
+            });
+        })
+    </script> -->
+</body>
+
+</html>
